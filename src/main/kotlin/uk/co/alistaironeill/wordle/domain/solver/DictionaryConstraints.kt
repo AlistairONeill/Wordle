@@ -6,5 +6,5 @@ import uk.co.alistaironeill.wordle.domain.language.RealDictionary
 fun Dictionary.constrain(constraints: Constraints): RealDictionary =
     RealDictionary(
         solutions.filter(constraints::matches).toSet(),
-        allWords.filter(constraints::matches).toSet()
+        allWords
     )
