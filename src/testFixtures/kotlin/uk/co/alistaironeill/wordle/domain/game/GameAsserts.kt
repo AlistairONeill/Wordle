@@ -1,7 +1,6 @@
 package uk.co.alistaironeill.wordle.domain.game
 
 import strikt.api.Assertion
-import strikt.api.DescribeableBuilder
 import strikt.assertions.isEqualTo
 import uk.co.alistaironeill.wordle.domain.language.word
 

@@ -2,7 +2,7 @@ package uk.co.alistaironeill.wordle.domain.language
 
 data class Word(val letters: List<Letter>) {
     operator fun get(index: Int) = letters[index]
-    fun contains(letter: Letter) = letters.contains(letter)
+    val size get() = letters.size
 }
 
 val String.word get() = uppercase()
