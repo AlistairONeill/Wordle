@@ -1,5 +1,7 @@
 package uk.co.alistaironeill.wordle.domain.game
 
+import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.GREEN
+import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.GREY
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.Word
 
@@ -20,5 +22,12 @@ class RealGame(
             else -> findOutput(word)
         }
 
-    private fun findOutput(word: Word): GameOutput = TODO()
+    private fun findOutput(word: Word): GameOutput =
+        word.letters.mapIndexed { index, letter ->
+            if (letter == solution[index]) {
+                GREEN
+            } else {
+                GREY
+            }
+        }.let(GameOutput::Result)
 }

@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.api.expectThrows
-import strikt.assertions.isEqualTo
+import uk.co.alistaironeill.wordle.domain.game.GameOutput.*
+import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.*
+import uk.co.alistaironeill.wordle.domain.language.AllowAllDictionary
 import uk.co.alistaironeill.wordle.domain.language.RealDictionary
 import uk.co.alistaironeill.wordle.domain.language.word
 
@@ -44,15 +46,34 @@ class RealGameTest {
         @Test
         fun `only accepts valid words`() =
             expectThat(game) {
-                get { accept(wrong) }
-                    .isEqualTo(GameOutput.InvalidInput)
+                accepts {
+                    "wrong" returning InvalidInput
+                }
             }
 
         @Test
         fun `returns a win when you get the solution`() =
             expectThat(game) {
-                get { accept(acorn) }
-                    .isEqualTo(GameOutput.Victory)
+                accepts {
+                    "acorn" returning Victory
+                }
+            }
+    }
+
+    @Nested
+    inner class HintCalculations {
+        private val game = RealGame(AllowAllDictionary, "abcde".word)
+
+        @Test
+        fun `returns green when a letter is in the correct spot`() =
+            expectThat(game) {
+                accepts {
+                    "affff" returning listOf(GREEN, GREY, GREY, GREY, GREY)
+                    "fbfff" returning listOf(GREY, GREEN, GREY, GREY, GREY)
+                    "ffcff" returning listOf(GREY, GREY, GREEN, GREY, GREY)
+                    "fffdf" returning listOf(GREY, GREY, GREY, GREEN, GREY)
+                    "ffffe" returning listOf(GREY, GREY, GREY, GREY, GREEN)
+                }
             }
     }
 }
