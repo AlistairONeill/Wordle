@@ -3,8 +3,8 @@ package uk.co.alistaironeill.wordle.domain.language
 import java.io.File
 
 data class RealDictionary(
-    private val solutions: Set<Word>,
-    private val allWords: Set<Word>
+    override val solutions: Set<Word>,
+    override val allWords: Set<Word>
 ) : Dictionary {
     companion object {
         private const val POSSIBLE_SOLUTIONS = "possibleSolutions.dat"
