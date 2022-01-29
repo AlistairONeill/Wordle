@@ -1,7 +1,6 @@
 package uk.co.alistaironeill.wordle.domain.game
 
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.GREEN
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.GREY
+import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.*
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.Word
 
@@ -24,10 +23,10 @@ class RealGame(
 
     private fun findOutput(word: Word): GameOutput =
         word.letters.mapIndexed { index, letter ->
-            if (letter == solution[index]) {
-                GREEN
-            } else {
-                GREY
+            when {
+                letter == solution[index] -> GREEN
+                solution.contains(letter) -> YELLOW
+                else -> GREY
             }
         }.let(GameOutput::Result)
 }

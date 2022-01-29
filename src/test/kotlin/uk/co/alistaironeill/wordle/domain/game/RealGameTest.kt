@@ -75,5 +75,36 @@ class RealGameTest {
                     "ffffe" returning listOf(GREY, GREY, GREY, GREY, GREEN)
                 }
             }
+
+        @Test
+        fun `returns yellow when a letter is correct but in the wrong place`() =
+            expectThat(game) {
+                accepts {
+                    "fafff" returning listOf(GREY, YELLOW, GREY, GREY, GREY)
+                    "ffaff" returning listOf(GREY, GREY, YELLOW, GREY, GREY)
+                    "fffaf" returning listOf(GREY, GREY, GREY, YELLOW, GREY)
+                    "ffffa" returning listOf(GREY, GREY, GREY, GREY, YELLOW)
+
+                    "bffff" returning listOf(YELLOW, GREY, GREY, GREY, GREY)
+                    "ffbff" returning listOf(GREY, GREY, YELLOW, GREY, GREY)
+                    "fffbf" returning listOf(GREY, GREY, GREY, YELLOW, GREY)
+                    "ffffb" returning listOf(GREY, GREY, GREY, GREY, YELLOW)
+
+                    "cffff" returning listOf(YELLOW, GREY, GREY, GREY, GREY)
+                    "fcfff" returning listOf(GREY, YELLOW, GREY, GREY, GREY)
+                    "fffcf" returning listOf(GREY, GREY, GREY, YELLOW, GREY)
+                    "ffffc" returning listOf(GREY, GREY, GREY, GREY, YELLOW)
+
+                    "dffff" returning listOf(YELLOW, GREY, GREY, GREY, GREY)
+                    "fdfff" returning listOf(GREY, YELLOW, GREY, GREY, GREY)
+                    "ffdff" returning listOf(GREY, GREY, YELLOW, GREY, GREY)
+                    "ffffd" returning listOf(GREY, GREY, GREY, GREY, YELLOW)
+
+                    "effff" returning listOf(YELLOW, GREY, GREY, GREY, GREY)
+                    "fefff" returning listOf(GREY, YELLOW, GREY, GREY, GREY)
+                    "ffeff" returning listOf(GREY, GREY, YELLOW, GREY, GREY)
+                    "fffef" returning listOf(GREY, GREY, GREY, YELLOW, GREY)
+                }
+            }
     }
 }
