@@ -164,5 +164,15 @@ class RealGameTest {
                     "effef" returning listOf(YELLOW, GREY, GREY, GREY, GREY)
                 }
             }
+
+        @Test
+        fun `handles multiple instances correctly`() =
+            expectThat(RealGame(AllowAllDictionary, "aaabb".word)) {
+                accepts {
+                    "aafaa" returning listOf(GREEN, GREEN, GREY, YELLOW, GREY)
+                    "ababa" returning listOf(GREEN, YELLOW, GREEN, GREEN, YELLOW)
+                    "abbba" returning listOf(GREEN, YELLOW, GREY, GREEN, YELLOW)
+                }
+            }
     }
 }
