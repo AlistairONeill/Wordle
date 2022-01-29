@@ -5,7 +5,9 @@ sealed interface GameOutput {
 
     object Victory : GameOutput
 
-    data class Result(val values: List<ResultValue>) : GameOutput
+    data class Result(val values: List<ResultValue>) : GameOutput {
+        operator fun get(index: Int) = values[index]
+    }
 
     enum class ResultValue {
         GREY,
