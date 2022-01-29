@@ -7,9 +7,9 @@ sealed interface GameOutput {
 
     data class Result(val values: List<ResultValue>) : GameOutput
 
-    enum class ResultValue(val symbol: Char) {
-        GREY('.'),
-        YELLOW('?'),
-        GREEN('!')
+    enum class ResultValue {
+        GREY,
+        YELLOW,
+        GREEN
     }
 }

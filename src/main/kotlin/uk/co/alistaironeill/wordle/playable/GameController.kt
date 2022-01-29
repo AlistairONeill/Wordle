@@ -26,3 +26,10 @@ class GameController(private val game: Game) {
     private fun Word.desc() = letters.map(Letter::name).joinToString("")
     private fun GameOutput.Result.desc() = values.map(GameOutput.ResultValue::symbol).joinToString("")
 }
+
+private fun GameOutput.ResultValue.symbol() =
+    when (this) {
+        GameOutput.ResultValue.GREY -> '.'
+        GameOutput.ResultValue.YELLOW -> '?'
+        GameOutput.ResultValue.GREEN -> '!'
+    }
