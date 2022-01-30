@@ -35,6 +35,7 @@ class DictionaryConstraintsTest {
             )
         }
 
+    @Test
     fun `constraints are not applied to all words`() =
         expectThat(
             Dictionary(
