@@ -3,9 +3,9 @@ package uk.co.alistaironeill.wordle.domain.solver
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.Result
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.*
+import uk.co.alistaironeill.wordle.domain.game.Result
+import uk.co.alistaironeill.wordle.domain.game.ResultValue
+import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
 import uk.co.alistaironeill.wordle.domain.language.Letter.A
 import uk.co.alistaironeill.wordle.domain.language.Letter.B
 import uk.co.alistaironeill.wordle.domain.language.word

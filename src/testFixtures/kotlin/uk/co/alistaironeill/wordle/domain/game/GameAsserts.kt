@@ -8,11 +8,9 @@ fun Assertion.Builder<out Game>.accepts(block: GameContext.() -> Unit) =
     GameContext(this).block()
 
 class GameContext(private val builder: Assertion.Builder<out Game>) {
-    infix fun String.returning(expected: GameOutput) {
+    infix fun String.returning(expected: Result?) {
         builder.get { accept(word) }.isEqualTo(expected)
     }
 
-    infix fun String.returning(expected: List<GameOutput.ResultValue>) {
-        builder.get { accept(word) }.isEqualTo(GameOutput.Result(expected))
-    }
+    infix fun String.returning(expected: List<ResultValue>) = this returning Result(expected)
 }

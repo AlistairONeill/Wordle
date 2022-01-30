@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.api.expectThrows
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.InvalidInput
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.Victory
+import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
 import uk.co.alistaironeill.wordle.domain.language.AllowAllDictionary
 import uk.co.alistaironeill.wordle.domain.language.RealDictionary
 import uk.co.alistaironeill.wordle.domain.language.word
@@ -45,18 +43,10 @@ class RealGameTest {
         private val game = RealGame(realDictionary, acorn)
 
         @Test
-        fun `only accepts valid words`() =
-            expectThat(game) {
-                accepts {
-                    "wrong" returning InvalidInput
-                }
-            }
-
-        @Test
         fun `returns a win when you get the solution`() =
             expectThat(game) {
                 accepts {
-                    "acorn" returning Victory
+                    "acorn" returning null
                 }
             }
     }

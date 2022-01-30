@@ -1,8 +1,8 @@
 package uk.co.alistaironeill.wordle.domain.solver
 
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.Result
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.GREEN
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.GREY
+import uk.co.alistaironeill.wordle.domain.game.Result
+import uk.co.alistaironeill.wordle.domain.game.ResultValue.GREEN
+import uk.co.alistaironeill.wordle.domain.game.ResultValue.GREY
 import uk.co.alistaironeill.wordle.domain.language.Word
 import uk.co.alistaironeill.wordle.domain.solver.Constraint.*
 

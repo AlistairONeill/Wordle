@@ -12,12 +12,9 @@ fun main() {
     println("Welcome to Wordle!")
 
     try {
-        while (true) {
+        do {
             println("Please make your guess")
-            val input = readln()
-            val output = controller.accept(input)
-            println(output)
-        }
+        } while (controller.accept(readln())?.also(::println) != null)
     } catch (e: Exception) {
         println("Congratulations!")
     }

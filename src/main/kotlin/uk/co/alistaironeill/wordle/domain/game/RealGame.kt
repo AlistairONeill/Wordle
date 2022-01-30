@@ -1,6 +1,6 @@
 package uk.co.alistaironeill.wordle.domain.game
 
-import uk.co.alistaironeill.wordle.domain.game.GameOutput.ResultValue.*
+import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.Letter
 import uk.co.alistaironeill.wordle.domain.language.Word
@@ -15,14 +15,11 @@ class RealGame(
         }
     }
 
-    override fun accept(word: Word): GameOutput =
-        when {
-            word == solution -> GameOutput.Victory
-            !dictionary.allowed(word) -> GameOutput.InvalidInput
-            else -> findOutput(word)
-        }
+    //TODO: [AON] Collapse
+    override fun accept(word: Word): Result? =
+        if (word == solution) null else findOutput(word)
 
-    private fun findOutput(word: Word): GameOutput {
+    private fun findOutput(word: Word): Result {
         val solution = solution.mutable()
         val output = solution.factoryOutput()
 
@@ -63,13 +60,13 @@ class RealGame(
         }
     }
 
-    private class MutableResult(val values: Array<GameOutput.ResultValue?>) {
+    private class MutableResult(val values: Array<ResultValue?>) {
         operator fun get(index: Int) = values[index]
-        operator fun set(index: Int, value: GameOutput.ResultValue) {
+        operator fun set(index: Int, value: ResultValue) {
             values[index] = value
         }
 
-        fun build(): GameOutput.Result = values.map { it ?: GREY }.let(GameOutput::Result)
+        fun build(): Result = values.map { it ?: GREY }.let(::Result)
     }
 
     private fun Word.mutable() = MutableWord(letters.toTypedArray())
