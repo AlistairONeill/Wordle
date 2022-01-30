@@ -1,6 +1,7 @@
 package uk.co.alistaironeill.wordle.playable
 
 import uk.co.alistaironeill.wordle.domain.game.Game
+import uk.co.alistaironeill.wordle.domain.game.GateKeepingGame.DisallowedWord
 import uk.co.alistaironeill.wordle.domain.game.Result
 import uk.co.alistaironeill.wordle.domain.game.ResultValue
 
@@ -8,7 +9,7 @@ class GameController(private val game: Game) {
     fun accept(input: String): String? =
         try {
             game.accept(input)?.desc()
-        } catch (e: Exception) {
+        } catch (e: DisallowedWord) {
             e.localizedMessage
         }
 

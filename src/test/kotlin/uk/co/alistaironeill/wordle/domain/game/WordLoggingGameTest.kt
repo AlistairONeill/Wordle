@@ -7,6 +7,7 @@ import uk.co.alistaironeill.wordle.domain.language.randomWord
 
 class WordLoggingGameTest : AbstractGameTest() {
     override val game = WordLoggingGame(stubGame)
+    override fun randomAllowedWord() = randomWord
 
     @Test
     fun `words get logged`() {

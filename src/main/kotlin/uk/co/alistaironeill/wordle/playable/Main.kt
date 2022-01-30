@@ -1,6 +1,7 @@
 package uk.co.alistaironeill.wordle.playable
 
 import uk.co.alistaironeill.wordle.domain.game.RealGame
+import uk.co.alistaironeill.wordle.domain.game.withAllowedWords
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import java.io.File
 
@@ -23,6 +24,8 @@ fun main() {
 private fun load(): GameController =
     File("data")
         .let(Dictionary::fromFolder)
-        .getRandomSolution()
-        .let(::RealGame)
-        .let(::GameController)
+        .run {
+            getRandomSolution()
+                .let(::RealGame)
+                .withAllowedWords(this)
+        }.let(::GameController)
