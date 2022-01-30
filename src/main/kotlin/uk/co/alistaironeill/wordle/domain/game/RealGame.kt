@@ -1,19 +1,12 @@
 package uk.co.alistaironeill.wordle.domain.game
 
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.Letter
 import uk.co.alistaironeill.wordle.domain.language.Word
 
 class RealGame(
-    private val dictionary: Dictionary,
     private val solution: Word
 ) : Game {
-    init {
-        if (!dictionary.isPossibleSolution(solution)) {
-            throw RuntimeException("SOLUTION ISN'T ALLOWED!")
-        }
-    }
 
     //TODO: [AON] Collapse
     override fun accept(word: Word): Result? =

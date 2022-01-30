@@ -16,7 +16,7 @@ fun evaluate(dictionary: Dictionary, solver: Solver) =
     dictionary
         .solutions
         .asSequence()
-        .map { solution -> RealGame(dictionary, solution) }
+        .map(::RealGame)
         .map(::WordLoggingGame)
         .onEach(solver::solve)
         .map(WordLoggingGame::words)

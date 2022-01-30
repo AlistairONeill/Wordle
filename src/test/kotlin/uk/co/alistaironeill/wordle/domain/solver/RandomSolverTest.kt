@@ -12,7 +12,7 @@ class RandomSolverTest {
 
     private fun assertCanSolve(dictionary: RealDictionary) {
         val solution = dictionary.getRandomSolution()
-        val game = RealGame(dictionary, solution)
+        val game = RealGame(solution)
         RandomSolver(dictionary)
             .solve(game)
             .let(::expectThat)

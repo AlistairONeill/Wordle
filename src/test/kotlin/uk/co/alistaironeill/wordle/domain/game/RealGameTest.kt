@@ -3,16 +3,13 @@ package uk.co.alistaironeill.wordle.domain.game
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
-import strikt.api.expectThrows
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.language.AllowAllDictionary
 import uk.co.alistaironeill.wordle.domain.language.RealDictionary
 import uk.co.alistaironeill.wordle.domain.language.word
 
 class RealGameTest {
     private val acorn = "acorn".word
     private val adept = "adept".word
-    private val wrong = "wrong".word
 
     private val realDictionary = RealDictionary(
         setOf(acorn),
@@ -23,24 +20,8 @@ class RealGameTest {
     )
 
     @Nested
-    inner class Validation {
-        @Test
-        fun `cannot create a game where the solution isn't in the solutions dictionary`() {
-            expectThrows<RuntimeException> {
-                RealGame(realDictionary, adept)
-            }
-
-            expectThrows<RuntimeException> {
-                RealGame(realDictionary, wrong)
-            }
-
-            RealGame(realDictionary, acorn)
-        }
-    }
-
-    @Nested
     inner class SpecialReturns {
-        private val game = RealGame(realDictionary, acorn)
+        private val game = RealGame(acorn)
 
         @Test
         fun `returns a win when you get the solution`() =
@@ -53,7 +34,7 @@ class RealGameTest {
 
     @Nested
     inner class HintCalculations {
-        private val game = RealGame(AllowAllDictionary, "abcde".word)
+        private val game = RealGame("abcde".word)
 
         @Test
         fun `returns green when a letter is in the correct spot`() =
@@ -157,7 +138,7 @@ class RealGameTest {
 
         @Test
         fun `handles multiple instances correctly`() =
-            expectThat(RealGame(AllowAllDictionary, "aaabb".word)) {
+            expectThat(RealGame("aaabb".word)) {
                 accepts {
                     "aafaa" returning listOf(GREEN, GREEN, GREY, YELLOW, GREY)
                     "ababa" returning listOf(GREEN, YELLOW, GREEN, GREEN, YELLOW)

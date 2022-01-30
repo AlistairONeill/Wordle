@@ -20,8 +20,9 @@ fun main() {
     }
 }
 
-private fun load(): GameController {
-    val dictionary = RealDictionary.fromFolder(File("data"))
-    val game = RealGame(dictionary, dictionary.getRandomSolution())
-    return GameController(game)
-}
+private fun load(): GameController =
+    File("data")
+        .let(RealDictionary::fromFolder)
+        .getRandomSolution()
+        .let(::RealGame)
+        .let(::GameController)
