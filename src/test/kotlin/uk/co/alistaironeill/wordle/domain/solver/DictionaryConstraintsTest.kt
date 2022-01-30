@@ -3,8 +3,8 @@ package uk.co.alistaironeill.wordle.domain.solver
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
+import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.Letter.C
-import uk.co.alistaironeill.wordle.domain.language.RealDictionary
 import uk.co.alistaironeill.wordle.domain.language.word
 
 class DictionaryConstraintsTest {
@@ -16,7 +16,7 @@ class DictionaryConstraintsTest {
     @Test
     fun `constraints are applied to the possible solutions`() =
         expectThat(
-            RealDictionary(
+            Dictionary(
                 setOf(abcde, aaabc),
                 setOf(abcde, acbde, acdeb)
             )
@@ -28,7 +28,7 @@ class DictionaryConstraintsTest {
                     }
                 )
             }.isEqualTo(
-                RealDictionary(
+                Dictionary(
                     setOf(abcde),
                     setOf(abcde, acbde, acdeb)
                 )
@@ -37,7 +37,7 @@ class DictionaryConstraintsTest {
 
     fun `constraints are not applied to all words`() =
         expectThat(
-            RealDictionary(
+            Dictionary(
                 setOf(abcde, aaabc),
                 setOf(abcde, acbde, acdeb)
             )
@@ -49,7 +49,7 @@ class DictionaryConstraintsTest {
                     }
                 )
             }.isEqualTo(
-                RealDictionary(
+                Dictionary(
                     setOf(abcde),
                     setOf(abcde, acbde, acdeb)
                 )

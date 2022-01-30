@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.language.RealDictionary
+import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.word
 
 class RealGameTest {
     private val acorn = "acorn".word
     private val adept = "adept".word
 
-    private val realDictionary = RealDictionary(
+    private val realDictionary = Dictionary(
         setOf(acorn),
         setOf(
             acorn,

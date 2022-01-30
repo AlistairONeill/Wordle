@@ -1,10 +1,10 @@
 package uk.co.alistaironeill.wordle.domain.solver
 
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
-import uk.co.alistaironeill.wordle.domain.language.RealDictionary
 
-fun Dictionary.constrain(constraints: Constraints): RealDictionary =
-    RealDictionary(
+//TODO: [AON] REMOVE
+fun Dictionary.constrain(constraints: Constraints): Dictionary =
+    Dictionary(
         solutions.filter(constraints::matches).toSet(),
         allWords
     )

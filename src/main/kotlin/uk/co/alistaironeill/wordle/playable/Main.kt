@@ -1,7 +1,7 @@
 package uk.co.alistaironeill.wordle.playable
 
 import uk.co.alistaironeill.wordle.domain.game.RealGame
-import uk.co.alistaironeill.wordle.domain.language.RealDictionary
+import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import java.io.File
 
 fun main() {
@@ -22,7 +22,7 @@ fun main() {
 
 private fun load(): GameController =
     File("data")
-        .let(RealDictionary::fromFolder)
+        .let(Dictionary::fromFolder)
         .getRandomSolution()
         .let(::RealGame)
         .let(::GameController)
