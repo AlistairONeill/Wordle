@@ -6,11 +6,7 @@ class RealGame(
     private val solution: String
 ) : Game {
 
-    //TODO: [AON] Collapse
-    override fun accept(word: String): Result? =
-        if (word == solution) null else findOutput(word)
-
-    private fun findOutput(word: String): Result {
+    override fun accept(word: String): Result? = if (word == solution) null else {
         val solution = solution.mutable()
         val output = solution.factoryOutput()
 
@@ -26,7 +22,7 @@ class RealGame(
             }
         }
 
-        return output.build()
+        output.build()
     }
 
     private class MutableWord(val letters: Array<Char?>) {
