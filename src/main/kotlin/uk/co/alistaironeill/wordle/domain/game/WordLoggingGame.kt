@@ -3,7 +3,7 @@ package uk.co.alistaironeill.wordle.domain.game
 class WordLoggingGame(
     private val delegate: Game
 ): Game {
-    val words = ArrayList<String>()
-
-    override fun accept(word: String) = delegate.accept(word).also { words.add(word) }
+    private val _words = ArrayList<String>()
+    val words get(): List<String> = _words
+    override fun accept(word: String) = delegate.accept(word).also { _words.add(word) }
 }
