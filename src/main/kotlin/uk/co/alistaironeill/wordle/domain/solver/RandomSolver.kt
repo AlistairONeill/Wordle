@@ -6,16 +6,18 @@ import uk.co.alistaironeill.wordle.domain.language.Dictionary
 import uk.co.alistaironeill.wordle.domain.language.Word
 import uk.co.alistaironeill.wordle.domain.solver.ConstraintFinder.Companion.findConstraints
 
-class RandomSolver(private val initialDictionary: Dictionary) : Solver {
-    override fun solve(game: Game) = Instance(initialDictionary, game).solve()
+class RandomSolver(private val dictionary: Dictionary) : Solver {
+    override fun solve(game: Game) = Instance(dictionary.solutions, game).solve()
 
     private class Instance(
-        private var dictionary: Dictionary,
+        solutions: Set<Word>,
         private val game: Game
     ) {
+        val solutions = solutions.toMutableSet()
+
         fun solve(): Word {
             while (true) {
-                val word = dictionary.solutions.random()
+                val word = solutions.random()
                 game.accept(word)
                     ?.let { handle(word, it) }
                     ?: return word
@@ -23,7 +25,8 @@ class RandomSolver(private val initialDictionary: Dictionary) : Solver {
         }
 
         private fun handle(word: Word, result: Result) {
-            dictionary = dictionary.constrain(findConstraints(word, result))
+            findConstraints(word, result)
+                .filter(solutions)
         }
     }
 }
