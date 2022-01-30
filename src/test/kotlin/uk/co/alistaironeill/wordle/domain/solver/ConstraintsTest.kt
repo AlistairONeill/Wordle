@@ -2,7 +2,12 @@ package uk.co.alistaironeill.wordle.domain.solver
 
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
-import uk.co.alistaironeill.wordle.domain.language.Letter.*
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.A
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.B
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.C
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.D
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.E
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.constraints
 
 class ConstraintsTest {
     @Test

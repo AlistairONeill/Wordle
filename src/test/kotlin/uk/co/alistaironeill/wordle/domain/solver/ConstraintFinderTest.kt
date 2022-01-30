@@ -6,15 +6,15 @@ import strikt.assertions.isEqualTo
 import uk.co.alistaironeill.wordle.domain.game.Result
 import uk.co.alistaironeill.wordle.domain.game.ResultValue
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.language.Letter.A
-import uk.co.alistaironeill.wordle.domain.language.Letter.B
-import uk.co.alistaironeill.wordle.domain.language.word
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.A
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.B
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.constraints
 import uk.co.alistaironeill.wordle.domain.solver.ConstraintFinder.Companion.findConstraints
 
 class ConstraintFinderTest {
 
     private fun findConstraints(input: String, vararg result: ResultValue) =
-        findConstraints(input.word, Result(result.toList()))
+        findConstraints(input, Result(result.toList()))
 
     @Test
     fun `can find simple constraints`() {

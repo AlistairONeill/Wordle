@@ -1,11 +1,9 @@
 package uk.co.alistaironeill.wordle.domain.game
 
-import uk.co.alistaironeill.wordle.domain.language.Word
-
 class WordLoggingGame(
     private val delegate: Game
 ): Game {
-    val words = ArrayList<Word>()
+    val words = ArrayList<String>()
 
-    override fun accept(word: Word) = delegate.accept(word).also { words.add(word) }
+    override fun accept(word: String) = delegate.accept(word).also { words.add(word) }
 }

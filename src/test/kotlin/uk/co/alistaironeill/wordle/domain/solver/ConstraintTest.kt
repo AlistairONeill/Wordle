@@ -2,13 +2,12 @@ package uk.co.alistaironeill.wordle.domain.solver
 
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
-import uk.co.alistaironeill.wordle.domain.language.Letter.A
 import uk.co.alistaironeill.wordle.domain.solver.Constraint.*
 
 class ConstraintTest {
     @Test
     fun `The Is constraint works`() {
-        expectThat(Is(A, 1)).matches {
+        expectThat(Is('a', 1)).matches {
             + "babbb"
             - "abbbb"
             + "aaaaa"
@@ -16,7 +15,7 @@ class ConstraintTest {
             - "abaaa"
         }
 
-        expectThat(Is(A, 2)).matches {
+        expectThat(Is('a', 2)).matches {
             - "babbb"
             - "abbbb"
             + "aaaaa"
@@ -27,14 +26,14 @@ class ConstraintTest {
 
     @Test
     fun `The Not constraint works`() {
-        expectThat(Not(A, 1)).matches {
+        expectThat(Not('a', 1)).matches {
             + "abaaa"
             + "bbbbb"
             - "babbb"
             - "aaaaa"
         }
 
-        expectThat(Not(A, 2)).matches {
+        expectThat(Not('a', 2)).matches {
             - "abaaa"
             + "bbbbb"
             + "babbb"
@@ -44,7 +43,7 @@ class ConstraintTest {
 
     @Test
     fun `The AtLeast constraint works`() {
-        expectThat(AtLeast(A, 1)).matches {
+        expectThat(AtLeast('a', 1)).matches {
             - "bbbbb"
             + "aaaaa"
             + "abbbb"
@@ -53,7 +52,7 @@ class ConstraintTest {
             + "bbabb"
         }
 
-        expectThat(AtLeast(A, 2)).matches {
+        expectThat(AtLeast('a', 2)).matches {
             - "bbbbb"
             + "aaaaa"
             - "abbbb"
@@ -65,7 +64,7 @@ class ConstraintTest {
 
     @Test
     fun `The AtMost constraint works`() {
-        expectThat(AtMost(A, 1)).matches {
+        expectThat(AtMost('a', 1)).matches {
             + "bbbbb"
             - "aaaaa"
             + "abbbb"
@@ -74,7 +73,7 @@ class ConstraintTest {
             + "bbabb"
         }
 
-        expectThat(AtMost(A, 2)).matches {
+        expectThat(AtMost('a', 2)).matches {
             + "bbbbb"
             - "aaaaa"
             + "abbbb"

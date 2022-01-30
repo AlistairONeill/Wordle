@@ -4,14 +4,14 @@ import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
-import uk.co.alistaironeill.wordle.domain.language.Letter.C
-import uk.co.alistaironeill.wordle.domain.language.word
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.C
+import uk.co.alistaironeill.wordle.domain.solver.ConstraintBuilder.Companion.constraints
 
 class DictionaryConstraintsTest {
-    private val abcde = "abcde".word
-    private val aaabc = "aaabc".word
-    private val acbde = "acbde".word
-    private val acdeb = "acdeb".word
+    private val abcde = "abcde"
+    private val aaabc = "aaabc"
+    private val acbde = "acbde"
+    private val acdeb = "acdeb"
 
     @Test
     fun `constraints are applied to the possible solutions`() =
@@ -51,7 +51,7 @@ class DictionaryConstraintsTest {
                 )
             }.isEqualTo(
                 Dictionary(
-                    setOf(abcde),
+                    setOf(aaabc),
                     setOf(abcde, acbde, acdeb)
                 )
             )

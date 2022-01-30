@@ -4,13 +4,12 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import strikt.api.expectThat
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.language.word
 
 class RealGameTest {
 
     @Nested
     inner class SpecialReturns {
-        private val game = RealGame("acorn".word)
+        private val game = RealGame("acorn")
 
         @Test
         fun `returns a win when you get the solution`() =
@@ -23,7 +22,7 @@ class RealGameTest {
 
     @Nested
     inner class HintCalculations {
-        private val game = RealGame("abcde".word)
+        private val game = RealGame("abcde")
 
         @Test
         fun `returns green when a letter is in the correct spot`() =
@@ -127,7 +126,7 @@ class RealGameTest {
 
         @Test
         fun `handles multiple instances correctly`() =
-            expectThat(RealGame("aaabb".word)) {
+            expectThat(RealGame("aaabb")) {
                 accepts {
                     "aafaa" returning listOf(GREEN, GREEN, GREY, YELLOW, GREY)
                     "ababa" returning listOf(GREEN, YELLOW, GREEN, GREEN, YELLOW)

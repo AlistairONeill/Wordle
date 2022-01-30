@@ -1,28 +1,26 @@
 package uk.co.alistaironeill.wordle.domain.game
 
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.*
-import uk.co.alistaironeill.wordle.domain.language.Letter
-import uk.co.alistaironeill.wordle.domain.language.Word
 
 class RealGame(
-    private val solution: Word
+    private val solution: String
 ) : Game {
 
     //TODO: [AON] Collapse
-    override fun accept(word: Word): Result? =
+    override fun accept(word: String): Result? =
         if (word == solution) null else findOutput(word)
 
-    private fun findOutput(word: Word): Result {
+    private fun findOutput(word: String): Result {
         val solution = solution.mutable()
         val output = solution.factoryOutput()
 
-        for (i in 0 until word.size) {
+        for (i in word.indices) {
             if (solution.isGreen(word[i], i)) {
                 output[i] = GREEN
             }
         }
 
-        for (i in 0 until word.size) {
+        for (i in word.indices) {
             if (output[i] == null && solution.isYellow(word[i])) {
                 output[i] = YELLOW
             }
@@ -31,10 +29,10 @@ class RealGame(
         return output.build()
     }
 
-    private class MutableWord(val letters: Array<Letter?>) {
+    private class MutableWord(val letters: Array<Char?>) {
         fun factoryOutput() = MutableResult(arrayOfNulls(letters.size))
 
-        fun isGreen(letter: Letter, index: Int): Boolean =
+        fun isGreen(letter: Char, index: Int): Boolean =
             if (letters[index] == letter) {
                 letters[index] = null
                 true
@@ -42,7 +40,7 @@ class RealGame(
                 false
             }
 
-        fun isYellow(letter: Letter): Boolean {
+        fun isYellow(letter: Char): Boolean {
             val index = letters.indexOf(letter)
             return if (index > -1) {
                 letters[index] = null
@@ -62,5 +60,6 @@ class RealGame(
         fun build(): Result = values.map { it ?: GREY }.let(::Result)
     }
 
-    private fun Word.mutable() = MutableWord(letters.toTypedArray())
+    @Suppress("USELESS_CAST") // This is IntelliJ being silly
+    private fun String.mutable() = map { it as Char? }.toTypedArray().let(::MutableWord)
 }

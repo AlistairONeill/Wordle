@@ -3,8 +3,8 @@ package uk.co.alistaironeill.wordle.domain.language
 import java.io.File
 
 data class Dictionary(
-    val solutions: Set<Word>,
-    val allWords: Set<Word>
+    val solutions: Set<String>,
+    val allWords: Set<String>
 ) {
     companion object {
         private const val POSSIBLE_SOLUTIONS = "possibleSolutions.dat"
@@ -19,8 +19,7 @@ data class Dictionary(
             )
         }
 
-        private fun fromFile(file: File) : List<Word> =
-            file.readLines().map(String::word)
+        private fun fromFile(file: File) : List<String> = file.readLines()
     }
 
     fun getRandomSolution() = solutions.random()

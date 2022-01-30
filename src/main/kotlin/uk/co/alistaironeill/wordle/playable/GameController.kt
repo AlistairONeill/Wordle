@@ -3,14 +3,11 @@ package uk.co.alistaironeill.wordle.playable
 import uk.co.alistaironeill.wordle.domain.game.Game
 import uk.co.alistaironeill.wordle.domain.game.Result
 import uk.co.alistaironeill.wordle.domain.game.ResultValue
-import uk.co.alistaironeill.wordle.domain.language.word
 
 class GameController(private val game: Game) {
     fun accept(input: String): String? =
         try {
-            input.word
-                .let(game::accept)
-                ?.desc()
+            game.accept(input)?.desc()
         } catch (e: Exception) {
             e.localizedMessage
         }

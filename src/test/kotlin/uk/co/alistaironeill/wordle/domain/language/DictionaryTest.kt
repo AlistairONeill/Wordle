@@ -12,8 +12,8 @@ class DictionaryTest {
     inner class FromFolder {
         private val dictionary = Dictionary.fromFolder(File("data"))
 
-        private val acorn = "acorn".word
-        private val abash = "abash".word
+        private val acorn = "acorn"
+        private val abash = "abash"
 
         @Test
         fun `solutions populated correctly`() {

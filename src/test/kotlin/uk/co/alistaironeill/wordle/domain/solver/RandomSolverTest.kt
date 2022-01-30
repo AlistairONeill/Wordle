@@ -5,7 +5,6 @@ import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 import uk.co.alistaironeill.wordle.domain.game.RealGame
 import uk.co.alistaironeill.wordle.domain.language.Dictionary
-import uk.co.alistaironeill.wordle.domain.language.word
 import java.io.File
 
 class RandomSolverTest {
@@ -22,8 +21,8 @@ class RandomSolverTest {
     @Test
     fun `random solver can solve simple game`() =
         Dictionary(
-            setOf("abcde".word, "bskde".word, "absej".word),
-            setOf("abcde".word, "bskde".word, "absej".word, "askdn".word, "asjfa".word)
+            setOf("abcde", "bskde", "absej"),
+            setOf("abcde", "bskde", "absej", "askdn", "asjfa")
         ).let(::assertCanSolve)
 
     @Test

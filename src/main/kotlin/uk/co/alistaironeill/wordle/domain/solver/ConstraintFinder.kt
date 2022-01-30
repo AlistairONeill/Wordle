@@ -3,19 +3,19 @@ package uk.co.alistaironeill.wordle.domain.solver
 import uk.co.alistaironeill.wordle.domain.game.Result
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.GREEN
 import uk.co.alistaironeill.wordle.domain.game.ResultValue.GREY
-import uk.co.alistaironeill.wordle.domain.language.Word
 import uk.co.alistaironeill.wordle.domain.solver.Constraint.*
 
 class ConstraintFinder private constructor(
-    private val word: Word,
+    private val word: String,
     private val result: Result
 ) {
     companion object {
-        fun findConstraints(word: Word, result: Result): Constraints =
+        fun findConstraints(word: String, result: Result): Constraints =
             ConstraintFinder(word, result).find()
     }
 
-    private val map = word.letters
+    private val map = word
+        .toList()
         .zip(result.values)
         .groupBy { it.first }
         .mapValues { (_, value) -> value.map { it.second } }
@@ -31,7 +31,7 @@ class ConstraintFinder private constructor(
             .let(::Constraints)
 
     private fun findIsAndNotConstraints(): List<Constraint> =
-        word.letters.mapIndexed { index, letter ->
+        word.mapIndexed { index, letter ->
             when (result[index]) {
                 GREEN -> Is(letter, index)
                 else -> Not(letter, index)
